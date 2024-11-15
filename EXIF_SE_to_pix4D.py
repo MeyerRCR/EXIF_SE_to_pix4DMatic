@@ -25,13 +25,16 @@ from Util import util
 img_src_dirs = [
     r'E:\Taffel\TetherLogging2\TL2-unit04-RECON-5FFC85-2024-10-14-18-08-02\data\cam0',
     r'E:\Taffel\TetherLogging2\TL2-unit05-RECON-5FFC85-2024-10-14-18-25-50\data\cam0',
+    # r'\\166.2.125.52\uas\01_projects\2024\R6_Tether_Logging_lidar_2\01_cycles\TL2_units06-RECON-5FFC85-2024-10-14-21-06-50\data\cam0',
 ]
 
 # Source directory to put all the copied images
 images_dir = r'E:\Taffel\TetherLogging2\Images\Unit4_5'
+# images_dir = r'\\166.2.125.52\uas\01_projects\2024\R6_Tether_Logging_lidar_2\06_temp_images\Unit10_11_12'
 
 # Location of CSV file (exported by SE)
 csv_filepath = r'E:\Taffel\TetherLogging2\Projects\unit4_5Exif.csv'
+# csv_filepath = r'\\166.2.125.52\uas\01_projects\2024\R6_Tether_Logging_lidar_2\02_reference\PhotoCSVs\Unit10_11_12.csv'
 
 # Choose the suffix added to the new csv file
 new_csv_name = "_transformed_yaw_pitch.csv"
@@ -71,9 +74,9 @@ for img_src_dir in img_src_dirs:                                            # Lo
         image_name = os.path.basename(image)                                # Extract image name
         if image_name in image_names:                                       # Only copy if image has EXIF info from CSV
             if os.path.join(images_dir, image_name) in glob.glob(os.path.join(images_dir, '*.jpg')): # Check if image already exists in images_directory
-                print(f'Skipping \{image_name} It already exists in {images_dir}')
+                print(f"Skipping \\{image_name} It already exists in {images_dir}")
             else:
-                print(f'copying \{image_name} to {images_dir}')
+                print(f"copying \\{image_name} to {images_dir}")
                 shutil.copy(image, images_dir) # copy image to new directory
                 count += 1
 print(f"\nCopying complete. Images at: {images_dir}\nCopied: {count} Skipped: {len(image_names)-count}")
